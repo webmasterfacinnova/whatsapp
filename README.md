@@ -19,13 +19,13 @@ Go to the project directory
 create a virtual environment
 
 ```bash
-python -m venv env
+python -m venv venv
 ```
 
 activate the virtual environment
 
 ```bash
- env\Scripts\activate
+ venv\Scripts\activate
 ```
 
 Install dependencies
@@ -37,7 +37,7 @@ Install dependencies
 Start the developer server
 
 ```bash
-  fastapi dev main.py
+  uvicorn main:app --reload
 ```
 
 for production server use
@@ -48,12 +48,10 @@ for production server use
 
 to generate or update requirements.txt run
 
-````bash
+```bash
     pip freeze > requirements.txt
 ```
 
 ## Documentation
 
 [FastApi](https://fastapi.tiangolo.com)
-
-````
