@@ -52,6 +52,20 @@ to generate or update requirements.txt run
     pip freeze > requirements.txt
 ```
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`WHATSAPP_TOKEN`
+
+`PHONE_NUMBER_ID`
+
+`VERIFY_TOKEN`
+
+`OPENAI_API_KEY`
+
 ## Documentation
 
 [FastApi](https://fastapi.tiangolo.com)
+
+[Uvicorn](https://www.uvicorn.org/)
