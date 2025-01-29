@@ -16,6 +16,11 @@ pipeline {
                 echo 'Deploying Whatsapp gpt-4o bot....'
             }
         }
+        stage('View Python Version') {
+            steps {
+                sh 'python --version'
+            }
+        }
     }
     post {
         success {
