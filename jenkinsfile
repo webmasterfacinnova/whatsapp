@@ -1,0 +1,28 @@
+pipeline(
+    agent any,
+    stages: {
+        stage('Build') {
+            steps {
+                echo 'Building Whatsapp gpt-4o bot..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing Whatsapp gpt-4o bot..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Whatsapp gpt-4o bot....'
+            }
+        }
+    },
+    post {
+        success {
+            echo 'Pipeline de Whatsapp Gpt-4o ejecutado con éxito!'
+        }
+        failure {
+            echo 'Pipeline de Whatsapp Gpt-4o falló!'
+        }
+    }
+)
