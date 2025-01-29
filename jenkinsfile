@@ -19,6 +19,8 @@ pipeline {
         stage('View Python Version') {
             steps {
                 sh 'python3 --version'
+                sh 'systeminfo'
+                sh 'cat /etc/os-release'
             }
         }
     }
