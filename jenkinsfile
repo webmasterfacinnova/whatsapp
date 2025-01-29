@@ -1,5 +1,5 @@
-pipeline(
-    agent any
+pipeline {
+    agent any 
     stages: {
         stage('Build') {
             steps {
@@ -25,4 +25,4 @@ pipeline(
             echo 'Pipeline de Whatsapp Gpt-4o falló!'
         } 
     }
-)
+}
