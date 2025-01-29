@@ -23,6 +23,6 @@ pipeline(
         }
         failure {
             echo 'Pipeline de Whatsapp Gpt-4o falló!'
-        }
+        } 
     }
 )
