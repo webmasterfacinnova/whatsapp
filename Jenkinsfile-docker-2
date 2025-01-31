@@ -1,39 +1,26 @@
 pipeline {
     agent {
         kubernetes {
-            yaml '''
-                apiVersion: v1
-                kind: Pod
-                metadata:
-                  name: kaniko-pod
-                spec:
-                  containers:
-                  - name: kaniko
-                    image: gcr.io/kaniko-project/executor:latest
-                    command: ["/busybox/cat"]
-                    tty: true
-                    volumeMounts:
-                    - name: docker-config
-                      mountPath: /kaniko/.docker
-                  volumes:
-                  - name: docker-config
-                    secret:
-                      secretName: docker-config
-            '''
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: docker-client
+                image: docker:latest # Cliente Docker para ejecutar comandos.
+                command:
+                - cat
+                tty: true # Mantiene el contenedor en ejecución.
+            """
         }
     }
+    environment {
+        DOCKER_HOST = 'tcp://dockerdaemon:2375' // Conexión al daemon DinD.
+    }
     stages {
-        stage('Build and Push with Kaniko') {
+        stage('Build') {
             steps {
-                container('kaniko') {
-                    script {
-                        sh '''
-                        /kaniko/executor \
-                            --context `pwd` \
-                            --destination=gcr.io/poc-cicd-448617/my-image:latest
-                        '''
-                    }
-                }
+                sh 'docker version'
             }
         }
     }
