@@ -1,5 +1,7 @@
 pipeline {
-    agent { dockerfile true }
+    agent { docker {
+        image 'python:3.9-slim'
+    } }
     stages {
         stage('Build Docker container') {
             steps {
