@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker-agent
+    image: docker:20.10-dind  # Imagen con Docker instalado
+    securityContext:
+      privileged: true  # Necesario para Docker-in-Docker
+    volumeMounts:
+      - name: docker-sock
+        mountPath: /var/run/docker.sock
+  volumes:
+    - name: docker-sock
+      hostPath:
+        path: /var/run/docker.sock  # Montar el socket de Docker del nodo
+'''
+        }
+    }
+    stages {
+        stage('Test Docker') {
+            steps {
+                script {
+                    sh 'docker --version'
+                    sh 'docker run hello-world'
+                }
+            }
+        }
+    }
+}
